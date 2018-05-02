@@ -22,7 +22,7 @@ namespace TaskControll
         {
             using(MyDatabaseEntities dc = new MyDatabaseEntities())
             {
-                GridView1.DataSource = dc.Tables.OrderBy(a => a.name).ToList();
+                GridView1.DataSource = dc.FXDPlans.OrderBy(a => a.name).ThenBy(a => a.sum).ThenBy(a => a.date).ThenBy(a => a.executor).ToList();
                 GridView1.DataBind();
             }
         }
@@ -50,14 +50,15 @@ namespace TaskControll
                 
                 //this bellow line for not export to Excel
                 gvExport.Columns[0].Visible = false;
-                foreach(GridViewRow i in GridView1.Rows)
+                gvExport.Columns[5].Visible = false;
+                foreach (GridViewRow i in GridView1.Rows)
                 {
                     gvExport.Rows[i.RowIndex].Visible = false;
                     CheckBox cb = (CheckBox)i.FindControl("chkSelect");
-                    if(cb != null && cb.Checked)
+                    if (cb != null && cb.Checked)
                     {
                         gvExport.Rows[i.RowIndex].Visible = true;
-                    }
+                    }   
                 }
                 Response.Clear();
                 Response.Buffer = true;
