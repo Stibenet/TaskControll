@@ -77,5 +77,51 @@ namespace TaskControll
         {
             //this is added for error : GridView must be placed inside a form tag with runat=server
         }
+
+        protected void bExportWord_Click(object sender, EventArgs e)
+        {
+            //Export selected rows to Word
+            //need to check is any row selected
+
+            bool isSelected = false;
+            foreach (GridViewRow i in GridView1.Rows)
+            {
+                CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+                if (cb != null && cb.Checked)
+                {
+                    isSelected = true;
+                    break;
+                }
+            }
+
+            //export here
+            if (isSelected)
+            {
+                GridView gvExport = GridView1;
+
+                //this bellow line for not export to Excel
+                gvExport.Columns[0].Visible = false;
+                gvExport.Columns[5].Visible = false;
+                foreach (GridViewRow i in GridView1.Rows)
+                {
+                    gvExport.Rows[i.RowIndex].Visible = false;
+                    CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+                    if (cb != null && cb.Checked)
+                    {
+                        gvExport.Rows[i.RowIndex].Visible = true;
+                    }
+                }
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=FXDPlanTasks.doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-word";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htW = new HtmlTextWriter(sw);
+                gvExport.RenderControl(htW);
+                Response.Output.Write(sw.ToString());
+                Response.End();
+            }
+        }
     }
 }
