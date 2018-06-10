@@ -16,8 +16,12 @@ namespace TaskControll
     {
         public int Id { get; set; }
         public string name { get; set; }
-        public int sum { get; set; }
+        public string responsible { get; set; }
         public System.DateTime date { get; set; }
         public string executor { get; set; }
+        public string department { get; set; }
+        public string report { get; set; }
+        public byte[] reportfile { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

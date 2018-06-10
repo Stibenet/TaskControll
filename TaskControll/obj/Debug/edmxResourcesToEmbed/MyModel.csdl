@@ -17,8 +17,12 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="sum" Type="Int32" Nullable="false" />
+    <Property Name="responsible" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="executor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="report" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="reportfile" Type="Binary" MaxLength="500" FixedLength="true" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
 </Schema>

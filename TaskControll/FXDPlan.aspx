@@ -15,7 +15,7 @@
 &nbsp;<asp:Button ID="bExportWord" runat="server" Text="Экспорт в Word" Width="150px" OnClick="bExportWord_Click" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CellSpacing="10">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellSpacing="10">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
@@ -23,9 +23,13 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="name" HeaderText="Наименование" />
-            <asp:BoundField DataField="sum" HeaderText="Стоимость" />
+            <asp:BoundField DataField="responsible" HeaderText="Ответственный" />
             <asp:BoundField DataField="date" HeaderText="Дата" />
             <asp:BoundField DataField="executor" HeaderText="Исполнитель" />
+            <asp:BoundField DataField="department" HeaderText="Отдел" />
+            <asp:BoundField DataField="report" HeaderText="Отчет" />
+            <asp:BoundField DataField="reportfile" HeaderText="Файл отчета" />
+            <asp:BoundField DataField="status" HeaderText="Статус" />
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:LinkButton ID="lbEdit" PostBackUrl="~/FXDPlanEdit.aspx" runat="server">Редактировать | </asp:LinkButton>  
