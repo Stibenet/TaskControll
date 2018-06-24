@@ -27,7 +27,7 @@
                            </td>
                        </tr>
                        <tr>
-                           <td style="width: 208px">Стоимость</td>
+                           <td style="width: 208px">Ответственный</td>
                            <td style="width: 464px">
                                <asp:TextBox ID="TextBox2" runat="server" Width="418px"></asp:TextBox>
                            </td>
@@ -57,13 +57,31 @@
                            </td>
                        </tr>
                        <tr>
-                           <td style="width: 208px">Путь к файлу</td>
+                           <td style="width: 208px">Отдел</td>
                            <td style="width: 464px">
                                <asp:TextBox ID="TextBox4" runat="server" Width="418px"></asp:TextBox>
                            </td>
                            <td style="width: 192px">Руководитель</td>
                            <td>
                                <asp:CheckBox ID="CheckBox5" runat="server" Text="Утверждение" />
+                           </td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Отчет</td>
+                           <td style="width: 464px">
+                               <asp:TextBox ID="TextBox6" runat="server" Width="418px"></asp:TextBox>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Путь к файлу</td>
+                           <td style="width: 464px">
+                               <asp:TextBox ID="TextBox7" runat="server" Width="418px"></asp:TextBox>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Статус</td>
+                           <td style="width: 464px">
+                               <asp:TextBox ID="TextBox8" runat="server" Width="418px"></asp:TextBox>
                            </td>
                        </tr>
                    </table>

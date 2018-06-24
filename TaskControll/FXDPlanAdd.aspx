@@ -23,7 +23,7 @@
                            <td>&nbsp;</td>
                        </tr>
                        <tr>
-                           <td style="width: 208px">Стоимость</td>
+                           <td style="width: 208px">Ответственный</td>
                            <td>
                                <asp:TextBox ID="TextBox2" runat="server" Width="418px"></asp:TextBox>
                            </td>
@@ -44,9 +44,30 @@
                            <td>&nbsp;</td>
                        </tr>
                        <tr>
-                           <td style="width: 208px">Путь к файлу</td>
+                           <td style="width: 208px">Отдел</td>
                            <td>
                                <asp:TextBox ID="TextBox4" runat="server" Width="418px"></asp:TextBox>
+                           </td>
+                           <td>&nbsp;</td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Отчет</td>
+                           <td>
+                               <asp:TextBox ID="TextBox6" runat="server" Width="418px"></asp:TextBox>
+                           </td>
+                           <td>&nbsp;</td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Путь к файлу</td>
+                           <td>
+                               <asp:TextBox ID="TextBox7" runat="server" Width="418px"></asp:TextBox>
+                           </td>
+                           <td>&nbsp;</td>
+                       </tr>
+                       <tr>
+                           <td style="width: 208px">Статус</td>
+                           <td>
+                               <asp:TextBox ID="TextBox8" runat="server" Width="418px"></asp:TextBox>
                            </td>
                            <td>&nbsp;</td>
                        </tr>
