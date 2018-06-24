@@ -24,12 +24,12 @@
             </asp:TemplateField>
             <asp:BoundField DataField="name" HeaderText="Наименование" />
             <asp:BoundField DataField="responsible" HeaderText="Ответственный" />
-            <asp:BoundField DataField="date" HeaderText="Дата" />
+            
             <asp:BoundField DataField="executor" HeaderText="Исполнитель" />
             <asp:BoundField DataField="department" HeaderText="Отдел" />
             <asp:BoundField DataField="report" HeaderText="Отчет" />
-            <asp:BoundField DataField="reportfile" HeaderText="Файл отчета" />
-            <asp:BoundField DataField="status" HeaderText="Статус" />
+            <%--<asp:BoundField DataField="reportfile" HeaderText="Файл отчета" />
+            <asp:BoundField DataField="status" HeaderText="Статус" />--%>
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:LinkButton ID="lbEdit" PostBackUrl="~/FXDPlanEdit.aspx" runat="server">Редактировать | </asp:LinkButton>  

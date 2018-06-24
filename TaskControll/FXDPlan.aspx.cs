@@ -24,13 +24,12 @@ namespace TaskControll
             {
                 GridView1.DataSource = dc.FXDPlans.
                     OrderBy(a => a.name).
-                    ThenBy(a => a.responsible).
-                    ThenBy(a => a.date).
+                    ThenBy(a => a.responsible). 
                     ThenBy(a => a.executor).
                     ThenBy(a => a.department).
                     ThenBy(a => a.report).
-                    ThenBy(a => a.reportfile).
-                    ThenBy(a => a.status).
+                    //ThenBy(a => a.reportfile).
+                    //ThenBy(a => a.status).
                     ToList();
                 GridView1.DataBind();
             }
@@ -59,7 +58,7 @@ namespace TaskControll
                 
                 //this bellow line for not export to Excel
                 gvExport.Columns[0].Visible = false;
-                gvExport.Columns[9].Visible = false;
+                gvExport.Columns[6].Visible = false;
                 foreach (GridViewRow i in GridView1.Rows)
                 {
                     gvExport.Rows[i.RowIndex].Visible = false;
@@ -110,7 +109,7 @@ namespace TaskControll
 
                 //this bellow line for not export to Excel
                 gvExport.Columns[0].Visible = false;
-                gvExport.Columns[9].Visible = false;
+                gvExport.Columns[6].Visible = false;
                 foreach (GridViewRow i in GridView1.Rows)
                 {
                     gvExport.Rows[i.RowIndex].Visible = false;

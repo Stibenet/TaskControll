@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskList.aspx.cs" Inherits="TaskControll.TaskList" %>
-
 <!DOCTYPE html>
  
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,6 +70,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
     <div>
         <asp:GridView ID="myGridview" runat="server" AutoGenerateColumns="false"
             CellPadding="10" CellSpacing="0"
@@ -80,6 +80,11 @@
             AlternatingRowStyle-CssClass="trow2" OnRowCommand="myGridview_RowCommand" OnRowEditing="myGridview_RowEditing" OnRowCancelingEdit="myGridview_RowCancelingEdit" OnRowDeleting="myGridview_RowDeleting" OnRowUpdating="myGridview_RowUpdating">           
  
             <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkSelect" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>Наименование</HeaderTemplate>
                     <ItemTemplate>
@@ -182,8 +187,8 @@
                         <asp:RequiredFieldValidator ID="rfCREF" runat="server" ErrorMessage="*"
                             ForeColor="Red" Display="Dynamic" ValidationGroup="Add" ControlToValidate="txtReportFile">Required</asp:RequiredFieldValidator>
                     </FooterTemplate>
-                </asp:TemplateField>--%>
-                <%--<asp:TemplateField>
+                </asp:TemplateField>
+                <asp:TemplateField>
                     <HeaderTemplate>Статус</HeaderTemplate>
                     <ItemTemplate><%#Eval("status") %></ItemTemplate>
                     <EditItemTemplate>
@@ -197,7 +202,7 @@
                             ForeColor="Red" Display="Dynamic" ValidationGroup="Add" ControlToValidate="txtStatus">Required</asp:RequiredFieldValidator>
                     </FooterTemplate>
                 </asp:TemplateField>--%>
-                <%--<asp:TemplateField>
+<%--                <asp:TemplateField>
                     <HeaderTemplate>Country</HeaderTemplate>
                     <ItemTemplate><%#Eval("CountryName") %></ItemTemplate>
                     <FooterTemplate>
@@ -230,4 +235,4 @@
     </div>
     </form>
 </body>
-</html>
+</html>--%>
