@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Table">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="MyDatabaseEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Tables" EntityType="Self.Table" />
     <EntitySet Name="FXDPlans" EntityType="MyDatabaseModel.FXDPlan" />
   </EntityContainer>
   <EntityType Name="FXDPlan">
@@ -17,12 +9,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="responsible" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="responsible" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="executor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="report" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="reportfile" Type="Binary" MaxLength="500" FixedLength="true" />
-    <Property Name="status" Type="Int32" />
+    <Property Name="department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="report" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

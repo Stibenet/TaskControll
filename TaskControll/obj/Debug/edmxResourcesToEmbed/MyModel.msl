@@ -1,23 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище MyDatabaseModelContainer" CdmEntityContainer="MyDatabaseEntities">
-    <EntitySetMapping Name="Tables">
-      <EntityTypeMapping TypeName="MyDatabaseModel.Table">
-        <MappingFragment StoreEntitySet="Table">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FXDPlans">
       <EntityTypeMapping TypeName="MyDatabaseModel.FXDPlan">
         <MappingFragment StoreEntitySet="FXDPlan">
           <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="reportfile" ColumnName="reportfile" />
           <ScalarProperty Name="report" ColumnName="report" />
           <ScalarProperty Name="department" ColumnName="department" />
           <ScalarProperty Name="executor" ColumnName="executor" />
-          <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="responsible" ColumnName="responsible" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="Id" ColumnName="Id" />

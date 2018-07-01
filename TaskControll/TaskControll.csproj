@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="export.aspx" />
     <Content Include="FXDPlan.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -250,6 +251,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="export.aspx.cs">
+      <DependentUpon>export.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="export.aspx.designer.cs">
+      <DependentUpon>export.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FXDPlan.aspx.cs">
       <DependentUpon>FXDPlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,9 +307,6 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Table.cs">
-      <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TaskList.aspx.cs">
       <DependentUpon>TaskList.aspx</DependentUpon>

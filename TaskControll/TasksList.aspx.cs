@@ -21,8 +21,7 @@ namespace TaskControll
             if (!IsPostBack)
             {
                 PopulateGridview();
-                
-                
+                PopulateData();
             }
         }
 
@@ -50,6 +49,21 @@ namespace TaskControll
                 myGridview.Rows[0].Cells[0].ColumnSpan = dtbl.Columns.Count;
                 myGridview.Rows[0].Cells[0].Text = "Данные не найдены ...";
                 myGridview.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+            }
+        }
+
+        private void PopulateData()
+        {
+            using (MyDatabaseEntities dc = new MyDatabaseEntities())
+            {
+                GridView1.DataSource = dc.FXDPlans.
+                    OrderBy(a => a.name).
+                    ThenBy(a => a.responsible).
+                    ThenBy(a => a.executor).
+                    ThenBy(a => a.department).
+                    ThenBy(a => a.report).
+                    ToList();
+                GridView1.DataBind();
             }
         }
 
@@ -162,26 +176,26 @@ namespace TaskControll
 
 
 
-        //private void ExportGrid(string fileName, string contenttype)
-        //{
-        //    Response.Clear();
-        //    Response.Buffer = true;
-        //    Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
-        //    Response.Charset = "";
-        //    Response.ContentType = contenttype;
-        //    StringWriter sw = new StringWriter();
-        //    HtmlTextWriter hw = new HtmlTextWriter(sw);
+        private void ExportGrid(string fileName, string contenttype)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+            Response.Charset = "";
+            Response.ContentType = contenttype;
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
 
-        //    myGridview.RenderControl(hw);
-        //    Response.Output.Write(sw.ToString());
-        //    Response.Flush();
-        //    Response.Close();
-        //    Response.End();
-        //}
+            GridView1.RenderControl(hw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.Close();
+            Response.End();
+        }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            ////ExportGrid("GridviewData.doc", "application/vnd.ms-word");
+            ExportGrid("GridviewData.doc", "application/vnd.ms-word");
             ////Export selected rows to Excel
             ////need to check is any row selected
 
@@ -226,21 +240,20 @@ namespace TaskControll
             //    Response.End();
             //}
 
-
-            Response.AddHeader("content-disposition", "attachment;filename=ExportGridData.xls");
-            Response.ContentType = "application/vnd.ms-excel";
-            using(StringWriter sw = new StringWriter())
-            {
-                HtmlTextWriter htW = new HtmlTextWriter(sw);
-                myGridview.AllowPaging = false;
-                myGridview.RenderControl(htW);
-                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-                Response.Write(style);
-                Response.Output.Write(sw);
-                Response.Flush();
-                Response.Close();
-                Response.End();
-            }
+            //Response.AddHeader("content-disposition", "attachment;filename=ExportGridData.xls");
+            //Response.ContentType = "application/vnd.ms-excel";
+            //using(StringWriter sw = new StringWriter())
+            //{
+            //    HtmlTextWriter htW = new HtmlTextWriter(sw);
+            //    myGridview.AllowPaging = false;
+            //    myGridview.RenderControl(htW);
+            //    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            //    Response.Write(style);
+            //    Response.Output.Write(sw);
+            //    Response.Flush();
+            //    Response.Close();
+            //    Response.End();
+            //}
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -250,49 +263,50 @@ namespace TaskControll
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            ExportGrid("GridviewData.xls", "application/vnd.ms-excel");
             //Export selected rows to Word
             //need to check is any row selected
 
-            bool isSelected = false;
-            foreach (GridViewRow i in myGridview.Rows)
-            {
-                CheckBox cb = (CheckBox)i.FindControl("chkSelect");
-                if (cb != null && cb.Checked)
-                {
-                    isSelected = true;
-                    break;
-                }
-            }
+            //bool isSelected = false;
+            //foreach (GridViewRow i in myGridview.Rows)
+            //{
+            //    CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+            //    if (cb != null && cb.Checked)
+            //    {
+            //        isSelected = true;
+            //        break;
+            //    }
+            //}
 
-            //export here
-            if (isSelected)
-            {
-                GridView gvExport = myGridview;
+            ////export here
+            //if (isSelected)
+            //{
+            //    GridView gvExport = myGridview;
 
-                //this bellow line for not export to Excel
-                gvExport.Columns[0].Visible = false;
-                gvExport.Columns[6].Visible = false;
-                gvExport.Columns[7].Visible = false;
-                foreach (GridViewRow i in myGridview.Rows)
-                {
-                    gvExport.Rows[i.RowIndex].Visible = false;
-                    CheckBox cb = (CheckBox)i.FindControl("chkSelect");
-                    if (cb != null && cb.Checked)
-                    {
-                        gvExport.Rows[i.RowIndex].Visible = true;
-                    }
-                }
-                Response.Clear();
-                Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=FXDPlanTasks.doc");
-                Response.Charset = "";
-                Response.ContentType = "application/vnd.ms-word";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htW = new HtmlTextWriter(sw);
-                gvExport.RenderControl(htW);
-                Response.Output.Write(sw.ToString());
-                Response.End();
-            }
+            //    //this bellow line for not export to Excel
+            //    gvExport.Columns[0].Visible = false;
+            //    gvExport.Columns[6].Visible = false;
+            //    gvExport.Columns[7].Visible = false;
+            //    foreach (GridViewRow i in myGridview.Rows)
+            //    {
+            //        gvExport.Rows[i.RowIndex].Visible = false;
+            //        CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+            //        if (cb != null && cb.Checked)
+            //        {
+            //            gvExport.Rows[i.RowIndex].Visible = true;
+            //        }
+            //    }
+            //    Response.Clear();
+            //    Response.Buffer = true;
+            //    Response.AddHeader("content-disposition", "attachment;filename=FXDPlanTasks.doc");
+            //    Response.Charset = "";
+            //    Response.ContentType = "application/vnd.ms-word";
+            //    StringWriter sw = new StringWriter();
+            //    HtmlTextWriter htW = new HtmlTextWriter(sw);
+            //    gvExport.RenderControl(htW);
+            //    Response.Output.Write(sw.ToString());
+            //    Response.End();
+            //}
         }
     }
 }

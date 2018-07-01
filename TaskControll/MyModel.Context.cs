@@ -25,7 +25,6 @@ namespace TaskControll
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Table> Tables { get; set; }
         public DbSet<FXDPlan> FXDPlans { get; set; }
     }
 }

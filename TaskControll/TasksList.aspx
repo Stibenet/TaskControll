@@ -216,6 +216,16 @@
                     <RowStyle CssClass="trow1"></RowStyle>
 
                     </asp:GridView>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="name" HeaderText="Наименование" SortExpression="name" />
+                <asp:BoundField DataField="responsible" HeaderText="Ответственный" SortExpression="responsible" />
+                <asp:BoundField DataField="executor" HeaderText="Исполнитель" SortExpression="executor" />
+                <asp:BoundField DataField="department" HeaderText="Отдел" SortExpression="department" />
+                <asp:BoundField DataField="report" HeaderText="Доклад" SortExpression="report" />
+            </Columns>
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [name], [responsible], [executor], [department], [report] FROM [FXDPlan]"></asp:SqlDataSource>
             <br />
     </body>
 </html>
