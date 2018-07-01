@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using System.Collections;
 
 namespace TaskControll
 {
@@ -20,6 +21,8 @@ namespace TaskControll
             if (!IsPostBack)
             {
                 PopulateGridview();
+                
+                
             }
         }
 
@@ -76,7 +79,26 @@ namespace TaskControll
                 Console.WriteLine(ex.Message);
             }
 
-
+            try
+            {
+                if (e.CommandName.Equals("Check"))
+                {
+                    using (SqlConnection sqlCon = new SqlConnection(connectString))
+                    {
+                        sqlCon.Open();
+                        string query = "SELECT name FROM FXDPlan";
+                        SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                        sqlCmd.Parameters.AddWithValue("@name", (myGridview.FooterRow.FindControl("txtNameT") as TextBox).Text.Trim());
+                        
+                        sqlCmd.ExecuteNonQuery();
+                        PopulateGridview();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         protected void myGridview_RowEditing(object sender, GridViewEditEventArgs e)
@@ -85,14 +107,15 @@ namespace TaskControll
             PopulateGridview();
         }
 
-        protected void myGridview_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            myGridview.EditIndex = -1;
-            PopulateGridview();
-        }
+        //protected void myGridview_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        //{
+        //    myGridview.EditIndex = -1;
+        //    PopulateGridview();
+        //}
 
         protected void myGridview_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            
             try
             {
                 using (SqlConnection sqlCon = new SqlConnection(connectString))
@@ -138,56 +161,92 @@ namespace TaskControll
         }
 
 
+
+        //private void ExportGrid(string fileName, string contenttype)
+        //{
+        //    Response.Clear();
+        //    Response.Buffer = true;
+        //    Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+        //    Response.Charset = "";
+        //    Response.ContentType = contenttype;
+        //    StringWriter sw = new StringWriter();
+        //    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+        //    myGridview.RenderControl(hw);
+        //    Response.Output.Write(sw.ToString());
+        //    Response.Flush();
+        //    Response.Close();
+        //    Response.End();
+        //}
+
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //Export selected rows to Excel
-            //need to check is any row selected
+            ////ExportGrid("GridviewData.doc", "application/vnd.ms-word");
+            ////Export selected rows to Excel
+            ////need to check is any row selected
 
-            bool isSelected = false;
-            foreach (GridViewRow i in myGridview.Rows)
+            //bool isSelected = false;
+            //foreach (GridViewRow i in myGridview.Rows)
+            //{
+            //    CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+            //    if (cb != null && cb.Checked)
+            //    {
+            //        isSelected = true;
+            //        break;
+            //    }
+            //}
+
+            ////export here
+            //if (isSelected)
+            //{
+            //    GridView gvExport = myGridview;
+
+            //    //this bellow line for not export to Excel
+            //    gvExport.Columns[0].Visible = false;
+            //    gvExport.Columns[6].Visible = false;
+            //    gvExport.Columns[7].Visible = false;
+            //    foreach (GridViewRow i in myGridview.Rows)
+            //    {
+            //        gvExport.Rows[i.RowIndex].Visible = false;
+            //        CheckBox cb = (CheckBox)i.FindControl("chkSelect");
+            //        if (cb != null && cb.Checked)
+            //        {
+            //            gvExport.Rows[i.RowIndex].Visible = true;
+            //        }
+            //    }
+            //    Response.Clear();
+            //    Response.Buffer = true;
+            //    Response.AddHeader("content-disposition", "attachment;filename=ExportGridData.xls");
+            //    Response.Charset = "";
+            //    Response.ContentType = "application/vnd.ms-excel";
+            //    StringWriter sw = new StringWriter();
+            //    HtmlTextWriter htW = new HtmlTextWriter(sw);
+            //    gvExport.RenderControl(htW);
+            //    Response.Output.Write(sw.ToString());
+            //    Response.End();
+            //}
+
+
+            Response.AddHeader("content-disposition", "attachment;filename=ExportGridData.xls");
+            Response.ContentType = "application/vnd.ms-excel";
+            using(StringWriter sw = new StringWriter())
             {
-                CheckBox cb = (CheckBox)i.FindControl("chkSelect");
-                if (cb != null && cb.Checked)
-                {
-                    isSelected = true;
-                    break;
-                }
-            }
-
-            //export here
-            if (isSelected)
-            {
-                GridView gvExport = myGridview;
-
-                //this bellow line for not export to Excel
-                gvExport.Columns[0].Visible = false;
-                gvExport.Columns[6].Visible = false;
-                foreach (GridViewRow i in myGridview.Rows)
-                {
-                    gvExport.Rows[i.RowIndex].Visible = false;
-                    CheckBox cb = (CheckBox)i.FindControl("chkSelect");
-                    if (cb != null && cb.Checked)
-                    {
-                        gvExport.Rows[i.RowIndex].Visible = true;
-                    }
-                }
-                Response.Clear();
-                Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=ExportGridData.xls");
-                Response.Charset = "";
-                Response.ContentType = "application/vnd.ms-excel";
-                StringWriter sw = new StringWriter();
                 HtmlTextWriter htW = new HtmlTextWriter(sw);
-                gvExport.RenderControl(htW);
-                Response.Output.Write(sw.ToString());
+                myGridview.AllowPaging = false;
+                myGridview.RenderControl(htW);
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw);
+                Response.Flush();
+                Response.Close();
                 Response.End();
             }
         }
-
         public override void VerifyRenderingInServerForm(Control control)
         {
             //this is added for error : GridView must be placed inside a form tag with runat=server
         }
+
 
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -213,6 +272,7 @@ namespace TaskControll
                 //this bellow line for not export to Excel
                 gvExport.Columns[0].Visible = false;
                 gvExport.Columns[6].Visible = false;
+                gvExport.Columns[7].Visible = false;
                 foreach (GridViewRow i in myGridview.Rows)
                 {
                     gvExport.Rows[i.RowIndex].Visible = false;

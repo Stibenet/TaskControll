@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="adm.aspx" />
     <Content Include="App_Data\FXDPlan.mdf" />
     <Content Include="App_Data\FXDPlan_log.ldf">
       <DependentUpon>FXDPlan.mdf</DependentUpon>
@@ -212,6 +213,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adm.aspx.cs">
+      <DependentUpon>adm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adm.aspx.designer.cs">
+      <DependentUpon>adm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>

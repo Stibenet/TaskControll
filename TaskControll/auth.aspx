@@ -28,7 +28,7 @@
                        </tr>
                     </table>
                     <br />
-                    <asp:Button ID="Button1" runat="server" Text="Войти" Width="120px" />
+                    <asp:Button ID="Button1" runat="server" Text="Войти" Width="120px" OnClick="Button1_Click" />
                     <br />
                 </td>
                </tr>
