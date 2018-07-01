@@ -20,6 +20,8 @@ namespace TaskControll
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Panel1.Visible = true;
+            Panel2.Visible = false;
             if (!IsPostBack)
             {
                 PopulateGridview();
@@ -322,6 +324,18 @@ namespace TaskControll
             //    Response.Output.Write(sw.ToString());
             //    Response.End();
             //}
+        }
+
+        protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Panel1.Visible = false;
+            Panel2.Visible = true;
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Panel1.Visible = true;
+            Panel2.Visible = false;
         }
     }
 }
