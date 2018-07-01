@@ -75,8 +75,8 @@
             <div align="center">
             <br />
             <br />
-            <asp:Button ID="Button1" runat="server" Text="Экспорт в Excel" OnClick="Button1_Click" />
-            &nbsp;<asp:Button ID="Button2" runat="server" Text="Экспорт в Word" OnClick="Button2_Click" />
+            <asp:Button ID="Button1" runat="server" Text="Экспортировать все в Word" OnClick="Button1_Click" />
+            &nbsp;<asp:Button ID="Button2" runat="server" Text="Экспортировать все в Excel" OnClick="Button2_Click" />
             </div>
 
                     <div align="center">
@@ -87,6 +87,7 @@
                             <asp:ListItem>Сортировка по статусу</asp:ListItem>                                                         
                         </asp:RadioButtonList>
                     </div>
+        
                     <asp:GridView ID="myGridview" runat="server" AutoGenerateColumns="False"
                         CellPadding="10"
                         ShowFooter="True"
@@ -97,11 +98,11 @@
                     <AlternatingRowStyle CssClass="trow2"></AlternatingRowStyle>
 
                         <Columns>
-                            <asp:TemplateField>
+<%--                            <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkSelect" runat="server" />
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                             <asp:TemplateField>
                                 <HeaderTemplate>Наименование</HeaderTemplate>
                                 <ItemTemplate>
@@ -216,7 +217,7 @@
                     <RowStyle CssClass="trow1"></RowStyle>
 
                     </asp:GridView>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Visible="False">
             <Columns>
                 <asp:BoundField DataField="name" HeaderText="Наименование" SortExpression="name" />
                 <asp:BoundField DataField="responsible" HeaderText="Ответственный" SortExpression="responsible" />

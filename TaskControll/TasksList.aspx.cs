@@ -15,6 +15,8 @@ namespace TaskControll
     {
         string connectString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Malkollm\Documents\GIT\TaskControll\TaskControll\App_Data\FXDPlan.mdf;
             Integrated Security = True; MultipleActiveResultSets=True;Application Name = EntityFramework";
+        
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -176,26 +178,39 @@ namespace TaskControll
 
 
 
-        private void ExportGrid(string fileName, string contenttype)
+        private void ExportGrid(string fileName, string contenttype, Boolean checks = false)
         {
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
-            Response.Charset = "";
-            Response.ContentType = contenttype;
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            GridView grid = GridView1;
+            
+            if (checks)
+            {
+                //    if (cb != null && cb.Checked)
+                ////        {
+                ////            gvExport.Rows[i.RowIndex].Visible = true;
+                ////        }
 
-            GridView1.RenderControl(hw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.Close();
-            Response.End();
+                grid.Visible = true;
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+                Response.Charset = "";
+                Response.ContentType = contenttype;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                GridView1.RenderControl(hw);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.Close();
+                Response.End();
+            }
         }
+      
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            ExportGrid("GridviewData.doc", "application/vnd.ms-word");
+            ExportGrid("GridviewData.doc", "application/vnd.ms-word", true);
             ////Export selected rows to Excel
             ////need to check is any row selected
 
@@ -263,7 +278,7 @@ namespace TaskControll
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            ExportGrid("GridviewData.xls", "application/vnd.ms-excel");
+            ExportGrid("GridviewData.xls", "application/vnd.ms-excel", true);
             //Export selected rows to Word
             //need to check is any row selected
 
