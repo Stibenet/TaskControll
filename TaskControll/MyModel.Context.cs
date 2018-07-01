@@ -26,5 +26,6 @@ namespace TaskControll
         }
     
         public DbSet<FXDPlan> FXDPlans { get; set; }
+        public DbSet<auth> auths { get; set; }
     }
 }

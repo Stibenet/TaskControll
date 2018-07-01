@@ -10,24 +10,27 @@
            </tr>
            <tr>
                <td style="width: 148px; height: 327px"></td>
-               <td style="width: 1034px; height: 327px" aria-readonly="False">
+               <td aria-readonly="False">
                    <table class="nav-justified">
                        <tr>
                            <td style="width: 208px">Логин</td>
                            <td>
-                               <asp:TextBox ID="TextBox1" runat="server" Width="418px"></asp:TextBox>
+                               <asp:TextBox ID="Login1" runat="server" Width="415px"></asp:TextBox> 
                            </td>
                            <td>&nbsp;</td>
                        </tr>
                        <tr>
                            <td style="width: 208px">Пароль</td>
-                           <td>
-                               <asp:TextBox ID="TextBox2" runat="server" Width="418px"></asp:TextBox>
+                           <td>                               
+                               <asp:TextBox ID="Password1" runat="server" Width="415px"></asp:TextBox>
                            </td>
                            <td>&nbsp;</td>
                        </tr>
                     </table>
+                   <br />
+                    <asp:Label ID="Label1" runat="server" ForeColor="#FF0066"></asp:Label>
                     <br />
+                   <br />
                     <asp:Button ID="Button1" runat="server" Text="Войти" Width="120px" OnClick="Button1_Click" />
                     <br />
                 </td>

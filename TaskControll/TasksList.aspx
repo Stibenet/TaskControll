@@ -70,12 +70,24 @@
                 width: 185px;
             }
             .auto-style1 {
-                left: 1px;
+                left: 13px;
                 top: 0px;
             }
             </style>
     </head>
     <body>
+        <table style="width: 100%;">
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="width: 23px">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="width: 310px">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td style="width: 714px">&nbsp;</td>
+            <td>&nbsp;<a runat="server" href="~/auth">Выйти</a></td>
+        </tr>
+    </table>
             <div align="center">
             <br />
             <br />
@@ -84,9 +96,9 @@
             </div>
 
             <div>
-                <h4>Сортировка по полю ответственный:</h4>
+                <h4>&nbsp;&nbsp; Сортировка по полю ответственный:</h4>
                 <asp:DropDownList ID="DropDownList3" runat="server" CssClass="auto-style1" DataSourceID="SqlDataSource2" DataTextField="responsible" DataValueField="responsible" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
-                </asp:DropDownList>&nbsp;
+                </asp:DropDownList>&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="Button3" runat="server" Text="Обновить" OnClick="Button3_Click" />
             </div>
 
@@ -347,7 +359,7 @@
                                         ForeColor="Red" Display="Dynamic" ValidationGroup="Add" ControlToValidate="txtReportFooter">Required</asp:RequiredFieldValidator>
                             </FooterTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+<%--                        <asp:TemplateField>
                             <HeaderTemplate>
                                 Статус задачи
                             </HeaderTemplate>
@@ -361,7 +373,7 @@
                                     <asp:ListItem>Отказано</asp:ListItem>
                                 </asp:DropDownList>
                             </EditItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton ID="lbEdit" runat="server" CommandName="Edit" ToolTip="Edit">Редактировать</asp:LinkButton>
